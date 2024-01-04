@@ -1,42 +1,59 @@
 {
-    "doc": {
-        "freq": 3,
-        "posting": [
-            "second.txt",
-            "third.txt"
-        ]
+    "index": {
+        "doc": {
+            "freq": 3,
+            "posting": [
+                1,
+                2,
+                3
+            ]
+        },
+        "first": {
+            "freq": 1,
+            "posting": [
+                1
+            ]
+        },
+        "is": {
+            "freq": 3,
+            "posting": [
+                1,
+                2,
+                3
+            ]
+        },
+        "second": {
+            "freq": 1,
+            "posting": [
+                2
+            ]
+        },
+        "the": {
+            "freq": 3,
+            "posting": [
+                1,
+                2,
+                3
+            ]
+        },
+        "third": {
+            "freq": 1,
+            "posting": [
+                3
+            ]
+        },
+        "this": {
+            "freq": 3,
+            "posting": [
+                1,
+                2,
+                3
+            ]
+        }
     },
-    "first": {
-        "freq": 1,
-        "posting": []
-    },
-    "is": {
-        "freq": 3,
-        "posting": [
-            "second.txt",
-            "third.txt"
-        ]
-    },
-    "second": {
-        "freq": 1,
-        "posting": []
-    },
-    "the": {
-        "freq": 3,
-        "posting": [
-            "second.txt",
-            "third.txt"
-        ]
-    },
-    "third": {
-        "freq": 1,
-        "posting": []
-    },
-    "this": {
-        "freq": 3,
-        "posting": [
-            "second.txt",
-            "third.txt"
-        ]
+    "docs": {
+        "1": "first.txt",
+        "2": "second.txt",
+        "3": "third.txt"
     }
 }
