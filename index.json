@@ -1,0 +1,42 @@
+{
+    "doc": {
+        "freq": 3,
+        "posting": [
+            "second.txt",
+            "third.txt"
+        ]
+    },
+    "first": {
+        "freq": 1,
+        "posting": []
+    },
+    "is": {
+        "freq": 3,
+        "posting": [
+            "second.txt",
+            "third.txt"
+        ]
+    },
+    "second": {
+        "freq": 1,
+        "posting": []
+    },
+    "the": {
+        "freq": 3,
+        "posting": [
+            "second.txt",
+            "third.txt"
+        ]
+    },
+    "third": {
+        "freq": 1,
+        "posting": []
+    },
+    "this": {
+        "freq": 3,
+        "posting": [
+            "second.txt",
+            "third.txt"
+        ]
+    }
+}
