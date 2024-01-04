@@ -1,7 +1,9 @@
-import glob, os
+import os
 import json
 import PySimpleGUI as sg
 sg.ChangeLookAndFeel('Black')
+
+
 
 class Gui:
     def __init__(self):
@@ -13,6 +15,8 @@ class Gui:
             [sg.Output(size=(100,30))]]
         
         self.window: object = sg.Window('File Search Engine', self.layout, element_justification='left')
+
+
 
 class SearchEngine:
     def __init__(self):
@@ -39,6 +43,7 @@ class SearchEngine:
                 else:
                     tokens[t] = {"freq": 1,"posting": [id]}
             id += 1
+        
         tokens = dict(sorted(tokens.items()))
 
         self.file_index = tokens
@@ -93,9 +98,8 @@ class SearchEngine:
             records.pop(0)
             records[0] = temp
    
-
         self.results = records[0]
-            
+
 
 
 def main():
@@ -113,7 +117,9 @@ def main():
             print(s.results)
 
         if event == "_INDEX_":
-            s.create_new_index('c:/Users/Lion/Desktop/IR/docs')
+            s.create_new_index(os.path.dirname(__file__).replace('\\','/') + '/docs')
             print(">> New index created")
+
+
     
 main()
