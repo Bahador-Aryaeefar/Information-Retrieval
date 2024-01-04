@@ -1,5 +1,18 @@
 import glob, os
 import json
+import PySimpleGUI as sg
+sg.ChangeLookAndFeel('Black')
+
+class Gui:
+    def __init__(self):
+        self.layout: list = [
+            [sg.Text('Search Term', size=(11,1)),
+             sg.Input(size=(40,1), focus=True, key="TERM"),
+             sg.Button('Search', size=(10,1), bind_return_key=True, key="_SEARCH_"),
+             sg.Button('Re-Index', size=(10,1), key="_INDEX_")],
+            [sg.Output(size=(100,30))]]
+        
+        self.window: object = sg.Window('File Search Engine', self.layout, element_justification='left')
 
 class SearchEngine:
     def __init__(self):
@@ -52,17 +65,55 @@ class SearchEngine:
     def search(self, query):
         self.results.clear()
         terms = query.split(' ')
-        # for t in terms:
-        #     if t in self.file_index:
+        records = []
+        for t in terms:
+            if t in self.file_index:
+                records.append(self.file_index[t]["posting"].copy())
+             
+        if(len(records) == 0):
+            self.results = []
+            return
 
-                
-        # print(terms)
+        while len(records)>1 :
+            temp = []
+            i = 0
+            j = 0
+            while True:
+                if i < len(records[0]) and j < len(records[1]):
+                    if records[0][i] == records[1][j]:
+                        temp.append(records[0][i])
+                        i += 1
+                        j += 1
+                    elif records[0][i] < records[1][j]:
+                        i += 1
+                    else: 
+                        j += 1
+                else:
+                    break
+            records.pop(0)
+            records[0] = temp
+   
+
+        self.results = records[0]
+            
+
 
 def main():
     s = SearchEngine()
-    s.create_new_index('c:/Users/Lion/Desktop/IR/docs')
-    print(s.file_index)
-    print(s.docs)
-    s.search('the first')
+    g = Gui()
+    s.load_existin_index()
+    while True: 
+        event, value = g.window.Read()
+        if event is None:
+            break
 
+        if event == "_SEARCH_":
+            # g.layout[1][0].Update('')
+            s.search(value["TERM"])
+            print(s.results)
+
+        if event == "_INDEX_":
+            s.create_new_index('c:/Users/Lion/Desktop/IR/docs')
+            print(">> New index created")
+    
 main()
